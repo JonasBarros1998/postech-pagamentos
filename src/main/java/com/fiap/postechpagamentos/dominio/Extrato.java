@@ -3,6 +3,7 @@ package com.fiap.postechpagamentos.dominio;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -13,17 +14,20 @@ public class Extrato {
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID id;
 
-	@Column(unique = true, nullable = false)
+	@Column(nullable = false)
 	private UUID pagamentoID;
 
-	@Column(unique = true, nullable = false)
+	@Column(nullable = false)
 	private UUID usuarioID;
 
-	@Column(unique = true, nullable = false)
+	@Column(nullable = false)
 	private UUID vendaID;
 
-	@Column(unique = true, nullable = false)
+	@Column(nullable = false)
 	private BigDecimal valorTotal;
+
+	@Column()
+	private LocalDateTime data = LocalDateTime.now();
 
 	public Extrato(UUID pagamentoID, UUID usuarioID, UUID vendaID, BigDecimal valorTotal) {
 		this.usuarioID = usuarioID;
@@ -56,5 +60,9 @@ public class Extrato {
 
 	public UUID getPagamentoID() {
 		return pagamentoID;
+	}
+
+	public LocalDateTime getData() {
+		return data;
 	}
 }

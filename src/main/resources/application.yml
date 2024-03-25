@@ -1,0 +1,33 @@
+app:
+  date:
+    format: yyyy-MM-dd
+spring:
+  cloud:
+    aws:
+      region:
+        static: us-east-1
+  datasource:
+    driver-class-name: "org.postgresql.Driver"
+    username: ${nome_do_usuario}
+    password: ${senha}
+    url: "jdbc:postgresql://localhost:5432/ecommerce"
+  web:
+    locale: pt_BR
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  config:
+    import:
+      - aws-secretsmanager:/secrets/base_de_dados_ecommerce_v2
+      - aws-secretsmanager:/secrets/chaves_de_seguranca_v2
+      - aws-secretsmanager:/secrets/kms_id_v2
+
+server:
+  port: 8084
+
+aplicacao:
+  kmsID: ${kms_id}
+  token:
+    google-api:
+      url: https://oauth2.googleapis.com

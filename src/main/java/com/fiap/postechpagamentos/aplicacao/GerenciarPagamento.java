@@ -47,7 +47,7 @@ public class GerenciarPagamento {
 			new ExtratoPagamentoForm(
 				item.getUsuarioID(),
 				item.getValorTotal(),
-				LocalDateTime.now(),
+				item.getData(),
 				item.getPagamentoID(),
 				item.getVendaID())
 		).toList();
